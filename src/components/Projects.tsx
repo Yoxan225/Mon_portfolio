@@ -128,7 +128,7 @@ const Projects: React.FC = () => {
                   <img
                     src={getImageSrc(project, 0)}
                     alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                     onError={() => handleImageError(project.images[0])}
                   />
                   {/* Overlay */}
@@ -248,7 +248,7 @@ const Projects: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 overflow-y-auto"
+            className="fixed inset-0 z-50 flex justify-center bg-black/80 backdrop-blur-sm p-4 sm:p-8 overflow-y-auto"
             onClick={closeProject}
           >
             <motion.div
@@ -256,7 +256,7 @@ const Projects: React.FC = () => {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
               transition={{ type: 'spring', bounce: 0.3 }}
-              className="relative w-full max-w-5xl bg-white dark:bg-dark-900 rounded-2xl shadow-2xl overflow-hidden my-8"
+              className="relative w-full max-w-5xl h-fit bg-white dark:bg-dark-900 rounded-2xl shadow-2xl overflow-hidden my-auto"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close button */}
@@ -270,11 +270,11 @@ const Projects: React.FC = () => {
               {/* Image Gallery */}
               <div className="relative">
                 {/* Main Image */}
-                <div className="relative aspect-video bg-gradient-to-br from-primary-500/10 to-accent-500/10">
+                <div className="relative aspect-video bg-dark-100 dark:bg-dark-950 pt-14 pb-3 px-3 sm:px-16">
                   <img
                     src={getImageSrc(selectedProject, currentImageIndex)}
                     alt={`${selectedProject.title} - Image ${currentImageIndex + 1}`}
-                    className="w-full h-full object-cover cursor-zoom-in"
+                    className="w-full h-full object-contain rounded-lg cursor-zoom-in"
                     onClick={() => openFullScreen(getImageSrc(selectedProject, currentImageIndex))}
                     onError={() => handleImageError(selectedProject.images[currentImageIndex])}
                   />
@@ -332,7 +332,7 @@ const Projects: React.FC = () => {
                         <img
                           src={!imageErrors.has(img) ? img : selectedProject.placeholder}
                           alt={`Miniature ${index + 1}`}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover object-top"
                           onError={() => handleImageError(img)}
                         />
                       </button>
