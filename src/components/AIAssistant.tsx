@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Bot, X, Send, Sparkles, User, Code, FolderGit2, Briefcase, Mail } from 'lucide-react';
-import { personalInfo, aiResponses } from '../data/portfolioData';
+import { Bot, X, Send, User, Code, FolderGit2, Briefcase, Mail } from 'lucide-react';
+import { aiResponses } from '../data/portfolioData';
 
 interface Message {
   id: number;
@@ -52,7 +52,7 @@ const AIAssistant: React.FC = () => {
     if (lowerQuery.includes('compétence') || lowerQuery.includes('technologie') || lowerQuery.includes('stack') || lowerQuery.includes('skill')) {
       return aiResponses.skills;
     }
-    if (lowerQuery.includes('projet') || lowerQuery.includes('projet') || lowerQuery.includes('réaliser')) {
+    if (lowerQuery.includes('projet') || lowerQuery.includes('réaliser')) {
       return aiResponses.projects;
     }
     if (lowerQuery.includes('parcours') || lowerQuery.includes('expérience') || lowerQuery.includes('étud') || lowerQuery.includes('formation')) {
@@ -255,7 +255,7 @@ const AIAssistant: React.FC = () => {
                   type="text"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
-                  onKeyPress={handleKeyPress}
+                  onKeyDown={handleKeyPress}
                   placeholder="Posez une question..."
                   className="flex-1 px-4 py-2.5 rounded-xl bg-dark-100 dark:bg-dark-800 text-dark-900 dark:text-white text-sm placeholder-dark-500 dark:placeholder-dark-400 focus:outline-none focus:ring-2 focus:ring-primary-500/50 transition-all"
                 />

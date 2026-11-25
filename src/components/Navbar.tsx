@@ -90,7 +90,7 @@ const Navbar: React.FC = () => {
                   e.preventDefault();
                   handleNavClick(item.href);
                 }}
-                className={`relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 ${
+                className={`relative px-3 xl:px-4 py-2 text-sm font-medium whitespace-nowrap rounded-lg transition-all duration-300 ${
                   activeSection === item.href.replace('#', '')
                     ? 'text-primary-600 dark:text-primary-400'
                     : 'text-dark-600 dark:text-dark-300 hover:text-dark-900 dark:hover:text-white'

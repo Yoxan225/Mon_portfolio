@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { ThemeProvider } from './context/ThemeContext';
 
@@ -9,10 +9,8 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
+import Experience from './components/Experience';
 import TimelineSection from './components/Timeline';
-import Statistics from './components/Statistics';
-import Certifications from './components/Certifications';
-import Blog from './components/Blog';
 import AIAssistant from './components/AIAssistant';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -44,10 +42,8 @@ function App() {
               <About />
               <Skills />
               <Projects />
-              <Statistics />
+              <Experience />
               <TimelineSection />
-              <Certifications />
-              <Blog />
               <Contact />
             </main>
             <Footer />

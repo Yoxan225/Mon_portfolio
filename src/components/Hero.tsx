@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Download, ArrowDown, Sparkles, Zap, Brain, Code } from 'lucide-react';
-import { personalInfo, stats } from '../data/portfolioData';
+import { personalInfo } from '../data/portfolioData';
 import ProfilePhoto from './ProfilePhoto';
+
+const words = ['Full Stack', 'Intelligence Artificielle', 'Génie Logiciel'];
 
 const Hero: React.FC = () => {
   const [typedText, setTypedText] = useState('');
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const words = ['Full Stack', 'Intelligence Artificielle', 'Cloud Computing', 'Génie Logiciel'];
 
   useEffect(() => {
     const currentWord = words[currentWordIndex];
@@ -184,7 +185,7 @@ const Hero: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7 }}
-              className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-12"
+              className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
             >
               <button onClick={scrollToProjects} className="btn-primary w-full sm:w-auto">
                 <span className="flex items-center gap-2">
@@ -199,31 +200,6 @@ const Hero: React.FC = () => {
               <button onClick={scrollToContact} className="btn-ghost w-full sm:w-auto">
                 Me contacter
               </button>
-            </motion.div>
-
-            {/* Stats */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
-              className="grid grid-cols-2 sm:grid-cols-4 gap-4"
-            >
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.9 + index * 0.1 }}
-                  className="glass-card p-4 text-center group hover:shadow-primary-500/20 transition-all"
-                >
-                  <div className="text-2xl sm:text-3xl font-bold gradient-text mb-1">
-                    {stat.value}{stat.suffix}
-                  </div>
-                  <div className="text-xs sm:text-sm text-dark-500 dark:text-dark-400">
-                    {stat.label}
-                  </div>
-                </motion.div>
-              ))}
             </motion.div>
           </motion.div>
 

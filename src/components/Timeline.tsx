@@ -79,7 +79,6 @@ const TimelineSection: React.FC = () => {
               const Icon = iconMap[item.icon] || GraduationCap;
               const colors = colorClasses[item.color] || colorClasses.primary;
               const isEven = index % 2 === 0;
-              const isLast = index === timeline.length - 1;
 
               return (
                 <motion.div

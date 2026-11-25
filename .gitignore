@@ -21,3 +21,9 @@ dist-ssr
 *.sln
 *.sw?
 .env
+
+# Originaux PNG (non publiés)
+_originaux_png/
+
+# Configuration locale de Claude Code
+.claude/

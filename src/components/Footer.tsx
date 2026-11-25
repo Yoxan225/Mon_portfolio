@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Heart, Code2, Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
+import { Heart, Code2, Github, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
 import { personalInfo, navigation } from '../data/portfolioData';
 
 const Footer: React.FC = () => {
@@ -12,8 +12,14 @@ const Footer: React.FC = () => {
     { icon: Mail, href: `mailto:${personalInfo.email}`, label: 'Email' },
   ];
 
+  const contactItems = [
+    { icon: Mail, value: personalInfo.email, href: `mailto:${personalInfo.email}` },
+    { icon: Phone, value: personalInfo.phone, href: `tel:${personalInfo.phone.replace(/\s/g, '')}` },
+    { icon: MapPin, value: personalInfo.location, href: '' },
+  ];
+
   return (
-    <footer className="relative pt-20 pb-8 overflow-hidden">
+    <footer className="relative pt-20 pb-28 overflow-hidden">
       {/* Gradient Top Border */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary-500 to-transparent" />
 
@@ -38,14 +44,15 @@ const Footer: React.FC = () => {
               </span>
             </motion.a>
             <p className="text-dark-500 dark:text-dark-400 text-sm leading-relaxed mb-4">
-              Étudiant en Génie Logiciel passionné par l'IA, le développement Full Stack et le Cloud Computing.
+              {personalInfo.title}, titulaire d'une Licence en Génie Logiciel. Je conçois des applications web
+              utiles et fiables, avec un intérêt marqué pour l'IA et la Data.
             </p>
             <div className="flex items-center gap-3">
               {socialLinks.map((social) => (
                 <motion.a
                   key={social.label}
                   href={social.href}
-                  target="_blank"
+                  target={social.href.startsWith('http') ? '_blank' : undefined}
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
@@ -59,10 +66,10 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Navigation */}
-          <div className="text-center md:text-left">
+          <div>
             <h3 className="font-semibold text-dark-900 dark:text-white mb-4">Navigation</h3>
-            <ul className="space-y-2">
-              {navigation.slice(0, 5).map((item) => (
+            <ul className="grid grid-cols-2 gap-x-6 gap-y-2">
+              {navigation.map((item) => (
                 <li key={item.name}>
                   <a
                     href={item.href}
@@ -74,26 +81,47 @@ const Footer: React.FC = () => {
               ))}
             </ul>
           </div>
+
+          {/* Contact */}
+          <div>
+            <h3 className="font-semibold text-dark-900 dark:text-white mb-4">Contact</h3>
+            <ul className="space-y-3">
+              {contactItems.map((item) => (
+                <li key={item.value} className="flex items-center gap-2.5 text-sm text-dark-500 dark:text-dark-400">
+                  <item.icon className="w-4 h-4 flex-shrink-0 text-primary-500" />
+                  {item.href ? (
+                    <a href={item.href} className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors break-all">
+                      {item.value}
+                    </a>
+                  ) : (
+                    <span>{item.value}</span>
+                  )}
+                </li>
+              ))}
+            </ul>
+            <span className="mt-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-medium">
+              <span className="w-2 h-2 rounded-full bg-green-500" />
+              Disponible pour de nouvelles opportunités
+            </span>
+          </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-dark-200/50 dark:border-dark-700/50">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
             {/* Copyright */}
-            <p className="text-sm text-dark-500 dark:text-dark-400 flex items-center gap-1">
-              © {currentYear} {personalInfo.name.split(' ').slice(0, 2).join(' ')}.
-              Fait avec <Heart className="w-4 h-4 text-red-500 inline animate-pulse" /> en Côte d'Ivoire
+            <p className="text-sm text-dark-500 dark:text-dark-400">
+              © {currentYear} {personalInfo.name}. Fait avec{' '}
+              <Heart className="w-4 h-4 text-red-500 inline -mt-0.5" /> en Côte d'Ivoire.
             </p>
 
             {/* Tech Stack */}
-            <div className="flex items-center gap-4 text-xs text-dark-400 dark:text-dark-500">
-              <span className="flex items-center gap-1">
-                Built with
-                <span className="font-medium text-dark-600 dark:text-dark-300">React</span>
-                <span className="text-dark-300 dark:text-dark-600">&</span>
-                <span className="font-medium text-dark-600 dark:text-dark-300">Tailwind</span>
-              </span>
-            </div>
+            <p className="text-xs text-dark-400 dark:text-dark-500">
+              Réalisé avec{' '}
+              <span className="font-medium text-dark-600 dark:text-dark-300">React</span>,{' '}
+              <span className="font-medium text-dark-600 dark:text-dark-300">TypeScript</span> et{' '}
+              <span className="font-medium text-dark-600 dark:text-dark-300">Tailwind CSS</span>
+            </p>
           </div>
         </div>
       </div>

@@ -56,7 +56,7 @@ const ProfilePhoto: React.FC<ProfilePhotoProps> = ({ size = 'lg' }) => {
           {/* Inner Photo */}
           <div className={`${innerSizeClasses[size]} rounded-full overflow-hidden bg-white dark:bg-dark-800 relative`}>
             <img
-              src={imageError ? placeholderUrl : 'public/assets/images/profile/profile.png'}
+              src={imageError ? placeholderUrl : '/assets/images/profile/profile.webp'}
               alt="KONAN KOUAKOU Yves Yoxan"
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               onError={() => setImageError(true)}
@@ -113,7 +113,7 @@ const ProfilePhoto: React.FC<ProfilePhotoProps> = ({ size = 'lg' }) => {
               {/* Image Container */}
               <div className="rounded-2xl overflow-hidden shadow-2xl shadow-primary-500/20 border border-white/10">
                 <img
-                  src={imageError ? placeholderUrl : 'public/assets/images/profile/profile.png'}
+                  src={imageError ? placeholderUrl : '/assets/images/profile/profile.webp'}
                   alt="KONAN KOUAKOU Yves Yoxan"
                   className="w-full h-auto max-h-[80vh] object-contain"
                 />

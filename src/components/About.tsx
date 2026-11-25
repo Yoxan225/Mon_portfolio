@@ -28,12 +28,35 @@ const About: React.FC = () => {
     'DevOps': Database,
   };
 
-  const timelineItems = [
-    { year: '2023', title: 'Début en Programmation', icon: GraduationCap, description: 'Premiers pas en développement' },
-    { year: '2024', title: 'Projets Web', icon: Code, description: 'Création de sites web modernes' },
-    { year: '2025', title: 'Spécialisation IA', icon: Brain, description: 'Machine Learning ' },
-    { year: '2026', title: 'Full Stack & Cloud', icon: Cloud, description: 'Architecture microservices & Big Data' },
-  ];
+ 
+const timelineItems = [
+  {
+    year: '2023',
+    title: 'Début du parcours universitaire',
+    icon: GraduationCap,
+    description: 'Entrée à l’université en informatique et acquisition des fondamentaux de la programmation, de l’algorithmique et de la logique informatique.'
+  },
+  {
+    year: '2024',
+    title: 'Développement Web & Bases de données',
+    icon: Code,
+    description: 'Approfondissement du développement web, de la programmation orientée objet et de la conception de bases de données à travers des projets pratiques.'
+  },
+  {
+    year: '2025',
+    title: 'Approfondissement & Intelligence Artificielle',
+    icon: Brain,
+    description: 'Exploration du Machine Learning, de l’analyse de données et développement d’applications intégrant des approches intelligentes.'
+  },
+  {
+    year: '2026',
+    title: 'Diplôme & Première expérience professionnelle',
+    icon: Cloud,
+    description: 'Obtention de la Licence en Génie Logiciel et réalisation d’un premier stage professionnel a la Direction des Etudes de la Planification et des Statistiques du Ministère de l’Environnement.',
+  }
+];
+
+    
 
   return (
     <section id="apropos" className="relative py-20 sm:py-32 overflow-hidden">
@@ -133,7 +156,7 @@ const About: React.FC = () => {
           >
             <h3 className="text-xl font-semibold text-dark-900 dark:text-white mb-6">Domaines d'intérêt</h3>
             <div className="grid sm:grid-cols-2 gap-4">
-              {aboutData.interests.map((item, index) => {
+              {aboutData.interests.map((item) => {
                 const Icon = iconMap[item.title] || Code;
                 return (
                   <motion.div

@@ -1,8 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Send, Mail, Phone, MapPin, Github, Linkedin, Download, CheckCircle, AlertCircle, FileText } from 'lucide-react';
-import emailjs from '@emailjs/browser';
-import { personalInfo, cvDownloadCount } from '../data/portfolioData';
+import { personalInfo } from '../data/portfolioData';
 
 const Contact: React.FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -50,12 +49,11 @@ const Contact: React.FC = () => {
     setStatus('sending');
 
     try {
-      await emailjs.sendForm(
-        'YOUR_SERVICE_ID',
-        'YOUR_TEMPLATE_ID',
-        formRef.current!,
-        'YOUR_PUBLIC_KEY'
-      );
+      // Ouvre le client mail du visiteur avec le message pré-rempli
+      const body = `${formData.message}
+
+— ${formData.name} (${formData.email})`;
+      window.location.href = `mailto:${personalInfo.email}?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(body)}`;
 
       setStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
@@ -108,13 +106,13 @@ const Contact: React.FC = () => {
     {
       icon: Github,
       label: 'GitHub',
-      value: 'github.com/yoxankonan',
+      value: personalInfo.githubLabel,
       href: personalInfo.github,
     },
     {
       icon: Linkedin,
       label: 'LinkedIn',
-      value: 'linkedin.com/in/yoxankonan',
+      value: personalInfo.linkedinLabel,
       href: personalInfo.linkedin,
     },
   ];
@@ -188,9 +186,6 @@ const Contact: React.FC = () => {
                 <Download className="w-5 h-5" />
                 Télécharger mon CV
               </motion.button>
-              <div className="mt-3 text-center text-xs text-dark-400 dark:text-dark-500">
-                <span className="font-semibold">{cvDownloadCount}</span> téléchargements
-              </div>
             </div>
 
             {/* Contact Links */}
@@ -319,7 +314,7 @@ const Contact: React.FC = () => {
                 <motion.button
                   type="submit"
                   disabled={status === 'sending'}
-                  whileHover={{ scale: status === 'idle' && status !== 'sending' ? 1.02 : 1 }}
+                  whileHover={{ scale: status === 'idle' ? 1.02 : 1 }}
                   whileTap={{ scale: status !== 'sending' ? 0.98 : 1 }}
                   className="w-full flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-gradient-to-r from-primary-500 to-accent-500 hover:from-primary-600 hover:to-accent-600 text-white font-semibold shadow-lg shadow-primary-500/25 transition-all disabled:opacity-70"
                 >
@@ -331,7 +326,7 @@ const Contact: React.FC = () => {
                   ) : status === 'success' ? (
                     <>
                       <CheckCircle className="w-5 h-5" />
-                      Message envoyé !
+                      Messagerie ouverte !
                     </>
                   ) : status === 'error' ? (
                     <>

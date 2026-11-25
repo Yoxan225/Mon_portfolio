@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Zap, Globe, Code2, Brain, Cloud, Database, ChevronDown } from 'lucide-react';
-import { skillsCategories } from '../data/portfolioData';
+import { skillsCategories, technologyCount } from '../data/portfolioData';
 
 const Skills: React.FC = () => {
   const [expandedCategory, setExpandedCategory] = useState<string | null>(skillsCategories[0].category);
@@ -115,7 +115,7 @@ const Skills: React.FC = () => {
                   className="overflow-hidden"
                 >
                   <div className="px-6 pb-6 pt-2">
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
                       {category.skills.map((skill, index) => {
                         const SkillIcon = skill.icon;
                         return (
@@ -124,53 +124,29 @@ const Skills: React.FC = () => {
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: index * 0.05 }}
-                            whileHover={{ scale: 1.02 }}
-                            className="relative group p-4 rounded-xl bg-white dark:bg-dark-800/50 border border-dark-200/50 dark:border-dark-700/50 hover:border-primary-500/50 transition-all duration-300"
+                            whileHover={{ y: -4 }}
+                            className="relative group p-4 rounded-xl bg-white dark:bg-dark-800/50 border border-dark-200/50 dark:border-dark-700/50 hover:border-primary-500/50 transition-colors duration-300"
                           >
                             {/* Glow Effect */}
                             <div
                               className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                               style={{
-                                background: `linear-gradient(135deg, ${skill.color}10, transparent)`,
+                                background: `linear-gradient(135deg, ${skill.color}14, transparent)`,
                               }}
                             />
 
-                            <div className="relative flex items-center gap-3 mb-3">
-                              {SkillIcon ? (
-                                <div
-                                  className="w-10 h-10 rounded-lg flex items-center justify-center"
-                                  style={{ backgroundColor: `${skill.color}20` }}
-                                >
-                                  <SkillIcon
-                                    className="w-5 h-5"
-                                    style={{ color: skill.color }}
-                                  />
-                                </div>
-                              ) : (
-                                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500/20 to-accent-500/20 flex items-center justify-center">
-                                  <Code2 className="w-5 h-5 text-primary-500" />
-                                </div>
-                              )}
-                              <span className="font-medium text-dark-800 dark:text-dark-200">
-                                {skill.name}
-                              </span>
-                            </div>
-
-                            {/* Progress Bar */}
-                            <div className="relative">
-                              <div className="progress-bar">
-                                <motion.div
-                                  className="progress-fill"
-                                  initial={{ width: 0 }}
-                                  animate={{ width: isExpanded ? `${skill.level}%` : 0 }}
-                                  transition={{ duration: 1, delay: index * 0.05 }}
-                                  style={{
-                                    background: `linear-gradient(90deg, ${skill.color}, ${skill.color}cc)`,
-                                  }}
+                            <div className="relative flex flex-col items-center gap-3 text-center">
+                              <div
+                                className="w-14 h-14 rounded-xl flex items-center justify-center"
+                                style={{ backgroundColor: `${skill.color}1f` }}
+                              >
+                                <SkillIcon
+                                  className="w-7 h-7"
+                                  style={{ color: skill.color }}
                                 />
                               </div>
-                              <span className="absolute right-0 -top-5 text-xs font-medium text-dark-500 dark:text-dark-400">
-                                {skill.level}%
+                              <span className="text-sm font-medium text-dark-800 dark:text-dark-200">
+                                {skill.name}
                               </span>
                             </div>
                           </motion.div>
@@ -192,9 +168,8 @@ const Skills: React.FC = () => {
           className="mt-12 text-center"
         >
           <p className="text-dark-500 dark:text-dark-400 text-sm">
-            Compétences vérifiées à travers{' '}
             <span className="font-semibold text-primary-600 dark:text-primary-400">
-              {skillsCategories.reduce((acc, cat) => acc + cat.skills.length, 0)}+
+              {technologyCount}
             </span>{' '}
             technologies couvrant le développement web, logiciel, IA, cloud et bases de données.
           </p>
